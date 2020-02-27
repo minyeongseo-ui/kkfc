@@ -1,6 +1,6 @@
 {
   "name": "kkfc",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "module": "dist/bundle.js",
   "license": "MIT",
   "scripts": {
@@ -22,7 +22,8 @@
   },
   "files": [
     "/dist",
-    "/src"
+    "/src",
+    "/index.ts"
   ],
   "types": "dist/types/index.d.ts",
   "repository": "https://github.com/load28/kkfc.git"
