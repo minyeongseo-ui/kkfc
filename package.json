@@ -1,6 +1,6 @@
 {
   "name": "kkfc",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "module": "dist/bundle.js",
   "license": "MIT",
   "scripts": {
@@ -11,13 +11,13 @@
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
     "prettier": "^1.19.1",
     "rollup": "^1.31.1",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-peer-deps-external": "^2.2.2",
-    "@babel/preset-typescript": "^7.8.3"
+    "rollup-plugin-peer-deps-external": "^2.2.2"
   },
   "peerDependencies": {
     "typescript": "^3.8.2"
