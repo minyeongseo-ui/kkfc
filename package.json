@@ -1,11 +1,11 @@
 {
   "name": "kkfc",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "module": "dist/bundle.js",
   "license": "MIT",
   "scripts": {
     "build": "yarn rollup -c",
-    "build:types": "npx tsc --emitDeclarationOnly",
+    "build:types": "tsc --emitDeclarationOnly"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -21,7 +21,8 @@
     "typescript": "^3.8.2"
   },
   "files": [
-    "/dist"
+    "/dist",
+    "/src"
   ],
   "types": "dist/types/index.d.ts",
   "repository": "https://github.com/load28/kkfc.git"
