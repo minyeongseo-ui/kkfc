@@ -1,2 +1,1 @@
-export declare class Task {
-}
+export declare class Task {}
