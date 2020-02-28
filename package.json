@@ -1,6 +1,6 @@
 {
   "name": "kkfc",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "module": "dist/bundle.js",
   "license": "MIT",
   "scripts": {
