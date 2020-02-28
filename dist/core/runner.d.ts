@@ -1,10 +1,15 @@
 import { Task } from './task';
 import 'zone.js/dist/zone.js';
 export declare class Runner {
-    name: string;
-    logger: any;
-    tasks: Task[];
+    private name;
+    private logger;
+    private tasks;
     constructor(name: string, logger: any, tasks: Task[]);
-    init(): void;
-    getZone(name: string): Zone;
+    createZone(name: string, opt?: CreateZoneOption): Runner;
+    run: any;
+    getCurrentZone(): Zone;
 }
+interface CreateZoneOption {
+    data?: any;
+}
+export {};

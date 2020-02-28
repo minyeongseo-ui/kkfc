@@ -1,7 +1,8 @@
 export declare class Task {
     tn: string;
-    fns: Function[];
-    constructor(tn: string, fns: Function[]);
+    fn: Function;
+    args: any[];
+    constructor(tn: string, fn: Function, args: any[]);
 }
 /**
  * 실행로직 선언

@@ -1,9 +1,11 @@
 export class Task {
   tn: string;
-  fns: Function[];
-  constructor(tn: string, fns: Function[]) {
+  fn: Function | any;
+  args: any[] | undefined;
+  constructor(tn: string, fn: any | Function, args?: any[]) {
     this.tn = tn;
-    this.fns = fns;
+    this.fn = fn;
+    this.args = args;
   }
 }
 

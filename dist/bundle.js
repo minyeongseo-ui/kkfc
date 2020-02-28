@@ -3411,25 +3411,27 @@ var Runner =
 /** @class */
 function () {
   function Runner(name, logger, tasks) {
+    this.run = function () {
+      return Zone.current.run;
+    };
+
     this.name = name;
     this.logger = logger;
     this.tasks = tasks;
   }
 
-  Runner.prototype.init = function () {
-    var z1 = this.getZone('hi');
-    console.log(z1.get('data').name);
-  };
-
-  Runner.prototype.getZone = function (name) {
-    return Zone.current.fork({
+  Runner.prototype.createZone = function (name, opt) {
+    Zone.current.fork({
       name: name,
       properties: {
-        data: {
-          name: name
-        }
+        data: (opt === null || opt === void 0 ? void 0 : opt.data) ? opt.data : undefined
       }
     });
+    return this;
+  };
+
+  Runner.prototype.getCurrentZone = function () {
+    return Zone.current;
   };
 
   return Runner;
@@ -3438,9 +3440,10 @@ function () {
 var Task =
 /** @class */
 function () {
-  function Task(tn, fns) {
+  function Task(tn, fn, args) {
     this.tn = tn;
-    this.fns = fns;
+    this.fn = fn;
+    this.args = args;
   }
 
   return Task;

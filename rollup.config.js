@@ -9,7 +9,6 @@ import del from 'rollup-plugin-delete';
 const extensions = ['.js', '.ts'];
 process.env.BABEL_ENV = 'production';
 
-
 export default {
   input: './src/index.ts',
   plugins: [
@@ -23,7 +22,7 @@ export default {
     commonjs({
       include: 'node_modules/**'
     }),
-    typescript({tsconfig: process.env.BABEL_ENV === 'production' ? 'src/tsconfig.app.json' : 'test/tsconfig.spec.json'}),
+    typescript({tsconfig: 'src/tsconfig.app.json'}),
     babelPluginFactory({
       extensions,
       include: ['src/**/*'],
