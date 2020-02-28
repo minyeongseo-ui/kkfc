@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "sourceMap": true,
+    "types": ["node"]
+  },
+  "include": [
+    "index.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "**/*.spec.ts"
+  ]
+}

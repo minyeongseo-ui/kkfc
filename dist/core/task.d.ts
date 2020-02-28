@@ -1,25 +1,8 @@
-var Runner =
-/** @class */
-function () {
-  function Runner(name, logger, tasks) {
-    this.name = name;
-    this.logger = logger;
-    this.tasks = tasks;
-  }
-
-  return Runner;
-}();
-
-var Task =
-/** @class */
-function () {
-  function Task(tn, fns) {
-    this.tn = tn;
-    this.fns = fns;
-  }
-
-  return Task;
-}();
+export declare class Task {
+    tn: string;
+    fns: Function[];
+    constructor(tn: string, fns: Function[]);
+}
 /**
  * 실행로직 선언
  * 입력 (이벤트 (주기적, 단순), 데이터 || 처리)
@@ -35,13 +18,3 @@ function () {
  * 처리 (데이터 반환[http], 데이터 처리 ,데이터 유효성 검사)
  * 출력 (데이터 전달, 데이터 확인 및 처리, 데이터 전송)
  */
-
-var Logger =
-/** @class */
-function () {
-  function Logger() {}
-
-  return Logger;
-}();
-
-export { Logger, Runner, Task };

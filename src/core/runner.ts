@@ -10,4 +10,10 @@ export class Runner {
     this.logger = logger;
     this.tasks = tasks;
   }
+
+  getZone() {
+    const z1 = Zone.current.fork({name: 'z'});
+    console.log(z1.name);
+  }
 }
+
