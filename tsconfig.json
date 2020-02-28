@@ -11,9 +11,6 @@
     "resolveJsonModule": true,
     "declaration": true,
     "target": "es5",
-    "declarationDir": "dist/types",
-  },
-  "include": [
-    "zone.d.ts"
-  ]
+    "declarationDir": "dist/types"
+  }
 }

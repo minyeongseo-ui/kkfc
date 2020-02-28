@@ -1,4 +1,5 @@
 import { Task } from './task';
+import 'zone.js/dist/zone.js';
 
 export class Runner {
   name: string;
@@ -11,9 +12,20 @@ export class Runner {
     this.tasks = tasks;
   }
 
-  getZone() {
-    const z1 = Zone.current.fork({name: 'z'});
-    console.log(z1.name);
+  init(name: string) {
+    const z1 = this.getZone(name);
+    return z1.get('data').name;
+  }
+
+  getZone(name: string) {
+    return Zone.current.fork({
+      name,
+      properties: {
+        data: {
+          name
+        }
+      }
+    });
   }
 }
 
