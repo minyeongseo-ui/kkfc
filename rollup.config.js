@@ -10,7 +10,7 @@ const extensions = ['.js', '.ts'];
 process.env.BABEL_ENV = 'production';
 
 export default {
-  input: './src/index.d.ts',
+  input: './src/index.ts',
   plugins: [
     del({
       targets: 'dist/*',
