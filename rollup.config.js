@@ -10,11 +10,10 @@ const extensions = ['.js', '.ts'];
 process.env.BABEL_ENV = 'production';
 
 export default {
-  input: './src/index.ts',
+  input: './src/index.d.ts',
   plugins: [
     del({
       targets: 'dist/*',
-      runOnce: true,
       verbose: true
     }),
     peerDep(),

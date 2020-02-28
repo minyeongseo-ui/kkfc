@@ -1,7 +1,6 @@
 import { Task } from './task';
 import 'zone.js/dist/zone.js';
-import { go, curry } from 'fxjs';
-
+import { goS } from 'fxjs2-typescript/Strict';
 
 export class Runner {
   private name: string;
@@ -22,7 +21,7 @@ export class Runner {
       name,
       properties: {
         props: {
-          data: opt?.data ? opt.data : undefined,
+          data: opt?.data ? opt?.data : undefined,
           status: { code: [ ResultCode.WAIT ], result: [] }
         }
       }
@@ -38,8 +37,8 @@ export class Runner {
 
   start() {
     const fns = this.tasks.map( ( t: Task ) => t.fn );
-    console.log('??');
-    go.apply( null, fns );
+    console.log( '??' );
+    goS.apply( null, fns );
   }
 }
 

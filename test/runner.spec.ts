@@ -1,6 +1,5 @@
 import { jestPreset } from 'ts-jest';
 import { ResultCode, Runner, Task } from '../src/core';
-import {go, curry} from 'fxjs';
 
 describe( 'runner', () => {
   it( 'runner - change zone properties', () => {

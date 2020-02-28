@@ -3407,35 +3407,133 @@ var __values = (commonjsGlobal && commonjsGlobal.__values) || function (o) {
      */
 }));
 
+function curry(f) {
+  return (a, ..._) => _.length ? f(a, ..._) : (..._) => f(a, ..._);
+}
+
+const emptyIter = (function *() {} ());
+function emptyL() { return emptyIter; }
+
+function toIter(iterable) {
+  return iterable && iterable[Symbol.iterator] ? iterable[Symbol.iterator]() : emptyL();
+}
+
+var go1 = (a, f) => a instanceof Promise ? a.then(f) : f(a);
+
+const nop = Symbol.for('nop');
+
+function go2(acc, a, f){
+  return a instanceof Promise ?
+    a.then(a => f(acc, a), e => e == nop ? acc : Promise.reject(e)) :
+    f(acc, a);
+}
+
+var take = curry(function take(l, iter) {
+  if (l < 1) return [];
+  let res = [];
+  iter = toIter(iter);
+  return function recur() {
+    let cur;
+    while (!(cur = iter.next()).done) {
+      const a = cur.value;
+      if (a instanceof Promise) {
+        return a
+          .then(a => (res.push(a), res).length == l ? res : recur())
+          .catch(e => e == nop ? recur() : Promise.reject(e));
+      }
+      res.push(a);
+      if (res.length == l) return res;
+    }
+    return res;
+  } ();
+});
+
+function head(iter) {
+  return go1(take(1, iter), ([h]) => h);
+}
+
+var go1Sync = (a, f) => f(a);
+
+const SymbolStop = Symbol.for('stop');
+
+function isStop(a) {
+  return !!(a && a[SymbolStop]);
+}
+
+function reduceS(f, acc, iter) {
+  if (arguments.length == 1) return (..._) => reduceS(f, ..._);
+  if (arguments.length == 2) return reduceS(f, head(iter = toIter(acc)), iter);
+
+  iter = toIter(iter);
+  return go1(acc, function recur(acc) {
+    let cur;
+    while (!isStop(acc) && !(cur = iter.next()).done) {
+      acc = go2(acc, cur.value, f);
+      if (acc instanceof Promise) return acc.then(recur);
+    }
+    return isStop(acc) ? acc.value : acc;
+  });
+}
+
+function goS(..._) {
+  return reduceS(go1Sync, _);
+}
+
 var Runner =
 /** @class */
 function () {
-  function Runner(name, logger, tasks) {
-    this.run = function () {
-      return Zone.current.run;
+  function Runner(name, logger, tasks, opt) {
+    var _this = this;
+
+    this.currentZone = undefined;
+
+    this.getCurrentZone = function () {
+      return _this.currentZone;
+    };
+
+    this.getProps = function (key) {
+      return key ? _this.currentZone.get('props')[key] : _this.currentZone.get('props');
     };
 
     this.name = name;
     this.logger = logger;
     this.tasks = tasks;
+    this.createZone(name, tasks, opt);
   }
 
-  Runner.prototype.createZone = function (name, opt) {
-    Zone.current.fork({
+  Runner.prototype.createZone = function (name, tasks, opt) {
+    this.currentZone = Zone.current.fork({
       name: name,
       properties: {
-        data: (opt === null || opt === void 0 ? void 0 : opt.data) ? opt.data : undefined
+        props: {
+          data: (opt === null || opt === void 0 ? void 0 : opt.data) ? opt === null || opt === void 0 ? void 0 : opt.data : undefined,
+          status: {
+            code: [ResultCode.WAIT],
+            result: []
+          }
+        }
       }
     });
-    return this;
+    tasks[0].fn instanceof Function ? this.currentZone.run(tasks[0].fn) : tasks[1].fn ? this.currentZone.run(tasks[1].fn) : console.error('no function');
   };
 
-  Runner.prototype.getCurrentZone = function () {
-    return Zone.current;
+  Runner.prototype.start = function () {
+    var fns = this.tasks.map(function (t) {
+      return t.fn;
+    });
+    console.log('??');
+    goS.apply(null, fns);
   };
 
   return Runner;
 }();
+var ResultCode;
+
+(function (ResultCode) {
+  ResultCode[ResultCode["FAIL"] = 4000] = "FAIL";
+  ResultCode[ResultCode["SUCCESS"] = 2000] = "SUCCESS";
+  ResultCode[ResultCode["WAIT"] = 3000] = "WAIT";
+})(ResultCode || (ResultCode = {}));
 
 var Task =
 /** @class */
@@ -3472,4 +3570,4 @@ function () {
   return Logger;
 }();
 
-export { Logger, Runner, Task };
+export { Logger, ResultCode, Runner, Task };

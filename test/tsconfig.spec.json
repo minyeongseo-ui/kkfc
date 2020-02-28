@@ -4,5 +4,6 @@
     "sourceMap": true,
     "types": ["jasmine", "node"]
   },
-  "include": ["**/*.spec.ts", "**/*.d.ts"]
+  "include": ["**/*.spec.ts", "**/*.d.ts"],
+  "exclude": ["node_modules/*"]
 }
