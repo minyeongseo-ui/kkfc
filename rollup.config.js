@@ -3,7 +3,6 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import babelPluginFactory from 'rollup-plugin-babel';
 import pkg from './package.json';
 import peerDep from 'rollup-plugin-peer-deps-external';
-import typescript from 'rollup-plugin-typescript2';
 import del from 'rollup-plugin-delete';
 
 const extensions = ['.js', '.ts'];
@@ -21,11 +20,10 @@ export default {
     commonjs({
       include: 'node_modules/**'
     }),
-    typescript({tsconfig: 'src/tsconfig.app.json'}),
     babelPluginFactory({
       extensions,
       include: ['src/**/*'],
-      runtimeHelpers: true,
+      runtimeHelpers: true
     })
   ],
   output: [{ file: pkg.module, format: 'es' }]

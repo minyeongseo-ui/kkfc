@@ -3479,21 +3479,13 @@ function goS(..._) {
   return reduceS(go1Sync, _);
 }
 
-var Runner =
-/** @class */
-function () {
-  function Runner(name, logger, tasks, opt) {
-    var _this = this;
-
+class Runner {
+  constructor(name, logger, tasks, opt) {
     this.currentZone = undefined;
 
-    this.getCurrentZone = function () {
-      return _this.currentZone;
-    };
+    this.getCurrentZone = () => this.currentZone;
 
-    this.getProps = function (key) {
-      return key ? _this.currentZone.get('props')[key] : _this.currentZone.get('props');
-    };
+    this.getProps = key => key ? this.currentZone.get('props')[key] : this.currentZone.get('props');
 
     this.name = name;
     this.logger = logger;
@@ -3501,9 +3493,9 @@ function () {
     this.createZone(name, tasks, opt);
   }
 
-  Runner.prototype.createZone = function (name, tasks, opt) {
+  createZone(name, tasks, opt) {
     this.currentZone = Zone.current.fork({
-      name: name,
+      name,
       properties: {
         props: {
           data: (opt === null || opt === void 0 ? void 0 : opt.data) ? opt === null || opt === void 0 ? void 0 : opt.data : undefined,
@@ -3515,19 +3507,16 @@ function () {
       }
     });
     tasks[0].fn instanceof Function ? this.currentZone.run(tasks[0].fn) : tasks[1].fn ? this.currentZone.run(tasks[1].fn) : console.error('no function');
-  };
+  }
 
-  Runner.prototype.start = function () {
-    var fns = this.tasks.map(function (t) {
-      return t.fn;
-    });
+  start() {
+    const fns = this.tasks.map(t => t.fn);
     console.log('??');
     goS.apply(null, fns);
-  };
+  }
 
-  return Runner;
-}();
-var ResultCode;
+}
+let ResultCode;
 
 (function (ResultCode) {
   ResultCode[ResultCode["FAIL"] = 4000] = "FAIL";
@@ -3535,17 +3524,14 @@ var ResultCode;
   ResultCode[ResultCode["WAIT"] = 3000] = "WAIT";
 })(ResultCode || (ResultCode = {}));
 
-var Task =
-/** @class */
-function () {
-  function Task(tn, fn, args) {
+class Task {
+  constructor(tn, fn, args) {
     this.tn = tn;
     this.fn = fn;
     this.args = args;
   }
 
-  return Task;
-}();
+}
 /**
  * 실행로직 선언
  * 입력 (이벤트 (주기적, 단순), 데이터 || 처리)
@@ -3562,12 +3548,6 @@ function () {
  * 출력 (데이터 전달, 데이터 확인 및 처리, 데이터 전송)
  */
 
-var Logger =
-/** @class */
-function () {
-  function Logger() {}
-
-  return Logger;
-}();
+class Logger {}
 
 export { Logger, ResultCode, Runner, Task };

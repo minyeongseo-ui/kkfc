@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig",
   "compilerOptions": {
-    "sourceMap": true,
+    "sourceMap": false,
     "types": ["node"]
   },
   "include": [
