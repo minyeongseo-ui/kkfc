@@ -1,3 +1,29 @@
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+var classCallCheck = _classCallCheck;
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+var createClass = _createClass;
+
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 var __values = (commonjsGlobal && commonjsGlobal.__values) || function (o) {
@@ -3479,13 +3505,23 @@ function goS(..._) {
   return reduceS(go1Sync, _);
 }
 
-class Runner {
-  constructor(name, logger, tasks, opt) {
+var Runner =
+/*#__PURE__*/
+function () {
+  function Runner(name, logger, tasks, opt) {
+    var _this = this;
+
+    classCallCheck(this, Runner);
+
     this.currentZone = undefined;
 
-    this.getCurrentZone = () => this.currentZone;
+    this.getCurrentZone = function () {
+      return _this.currentZone;
+    };
 
-    this.getProps = key => key ? this.currentZone.get('props')[key] : this.currentZone.get('props');
+    this.getProps = function (key) {
+      return key ? _this.currentZone.get('props')[key] : _this.currentZone.get('props');
+    };
 
     this.name = name;
     this.logger = logger;
@@ -3493,30 +3529,36 @@ class Runner {
     this.createZone(name, tasks, opt);
   }
 
-  createZone(name, tasks, opt) {
-    this.currentZone = Zone.current.fork({
-      name,
-      properties: {
-        props: {
-          data: (opt === null || opt === void 0 ? void 0 : opt.data) ? opt === null || opt === void 0 ? void 0 : opt.data : undefined,
-          status: {
-            code: [ResultCode.WAIT],
-            result: []
+  createClass(Runner, [{
+    key: "createZone",
+    value: function createZone(name, tasks, opt) {
+      this.currentZone = Zone.current.fork({
+        name: name,
+        properties: {
+          props: {
+            data: (opt === null || opt === void 0 ? void 0 : opt.data) ? opt === null || opt === void 0 ? void 0 : opt.data : undefined,
+            status: {
+              code: [ResultCode.WAIT],
+              result: []
+            }
           }
         }
-      }
-    });
-    tasks[0].fn instanceof Function ? this.currentZone.run(tasks[0].fn) : tasks[1].fn ? this.currentZone.run(tasks[1].fn) : console.error('no function');
-  }
+      });
+      tasks[0].fn instanceof Function ? this.currentZone.run(tasks[0].fn) : tasks[1].fn ? this.currentZone.run(tasks[1].fn) : console.error('no function');
+    }
+  }, {
+    key: "start",
+    value: function start() {
+      var fns = this.tasks.map(function (t) {
+        return t.fn;
+      });
+      goS.apply(null, fns);
+    }
+  }]);
 
-  start() {
-    const fns = this.tasks.map(t => t.fn);
-    console.log('??');
-    goS.apply(null, fns);
-  }
-
-}
-let ResultCode;
+  return Runner;
+}();
+var ResultCode;
 
 (function (ResultCode) {
   ResultCode[ResultCode["FAIL"] = 4000] = "FAIL";
@@ -3524,14 +3566,13 @@ let ResultCode;
   ResultCode[ResultCode["WAIT"] = 3000] = "WAIT";
 })(ResultCode || (ResultCode = {}));
 
-class Task {
-  constructor(tn, fn, args) {
-    this.tn = tn;
-    this.fn = fn;
-    this.args = args;
-  }
+var Task = function Task(tn, fn, args) {
+  classCallCheck(this, Task);
 
-}
+  this.tn = tn;
+  this.fn = fn;
+  this.args = args;
+};
 /**
  * 실행로직 선언
  * 입력 (이벤트 (주기적, 단순), 데이터 || 처리)
@@ -3548,6 +3589,8 @@ class Task {
  * 출력 (데이터 전달, 데이터 확인 및 처리, 데이터 전송)
  */
 
-class Logger {}
+var Logger = function Logger() {
+  classCallCheck(this, Logger);
+};
 
 export { Logger, ResultCode, Runner, Task };

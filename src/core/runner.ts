@@ -1,6 +1,6 @@
 import { Task } from './task';
 import 'zone.js/dist/zone.js';
-import { goS } from 'fxjs2-typescript/Strict';
+import { goS } from 'fxjs2-typescript';
 
 export class Runner {
   private name: string;
@@ -37,7 +37,6 @@ export class Runner {
 
   start() {
     const fns = this.tasks.map( ( t: Task ) => t.fn );
-    console.log( '??' );
     goS.apply( null, fns );
   }
 }

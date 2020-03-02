@@ -1,4 +1,3 @@
-import { jestPreset } from 'ts-jest';
 import { ResultCode, Runner, Task } from '../src/core';
 
 describe( 'runner', () => {

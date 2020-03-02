@@ -2,7 +2,7 @@
   "extends": "../tsconfig",
   "compilerOptions": {
     "sourceMap": true,
-    "types": ["jasmine", "node"],
+    "types": ["node", "jest"],
     "allowJs": true
   },
   "include": ["**/*.spec.ts", "**/*.d.ts"],
