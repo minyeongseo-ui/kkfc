@@ -1,4 +1,5 @@
 import { ResultCode, Runner, Task } from '../src/core';
+import { go } from 'fxjst';
 
 describe( 'runner', () => {
   it( 'runner - change zone properties', () => {
@@ -15,9 +16,16 @@ describe( 'runner', () => {
   } );
 
   it( 'runner - go', () => {
-    const t1 = new Task( 'print',  200 );
-    const t2 = new Task( 'print', ( a: number ) => console.log(a) );
-    const r2 = new Runner( 'r2', undefined, [ t1, t2 ] );
+    const t1 = new Task( 'print', 200 );
+    const t2 = new Task( 'print', ( a: number ) => {
+      // r2.getProps( 'data' ).name = 'min';
+      return a;
+    } );
+    const t3 = new Task( 'print', ( a: number ) => {
+      // console.log(r2.getProps( 'data' ).name);
+      console.log( a );
+    } );
+    const r2 = new Runner( 'r2', undefined, [ t1, t2, t3 ] );
     r2.start();
   } );
 } );

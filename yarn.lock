@@ -2270,13 +2270,12 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
-fxjs2-typescript@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/fxjs2-typescript/-/fxjs2-typescript-0.1.2.tgz#040bd3ce71b6006b476ec16a40360bbba37cd9d4"
-  integrity sha512-MMxgqRyBLcuakjM7AfvPpJl7QEA3wYZvx5cee1yAx9r/Sre8PzuTZpD3CJLfNVYJ0KrV9cU4JALINrPEZg34KA==
+fxjst@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/fxjst/-/fxjst-0.0.6.tgz#2593564fd223afe0c4e8d4e66a30d1bf61389a2e"
+  integrity sha512-YCqWQq+2EiewubsgJIO2zlHD+lqWF/or2Rou6pCpSelnBW+VHd5OH4l8Zw2Iex5/ZviG4Mqg2ZjyoE//UlxLeA==
   dependencies:
     core-js "^3.2.1"
-    dts-gen "^0.6.0"
     regenerator-runtime "^0.13.3"
 
 gensync@^1.0.0-beta.1:

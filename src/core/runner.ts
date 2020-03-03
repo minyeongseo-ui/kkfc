@@ -1,11 +1,12 @@
 import { Task } from './task';
 import 'zone.js/dist/zone.js';
-import { goS } from 'fxjs2-typescript';
+import { go } from 'fxjst';
 
 export class Runner {
   private name: string;
   private logger: any;
   private tasks: Task[];
+  private goR: Function = go;
 
   private currentZone: Zone | any = undefined;
 
@@ -26,9 +27,7 @@ export class Runner {
         }
       }
     } );
-    tasks[0].fn instanceof Function ?
-      this.currentZone.run( tasks[0].fn ) : tasks[1].fn ?
-      this.currentZone.run( tasks[1].fn ) : console.error( 'no function' );
+    this.currentZone.run( this.goR );
   }
 
   getCurrentZone = (): Zone => this.currentZone;
@@ -36,8 +35,13 @@ export class Runner {
   getProps = ( key?: string ): any => key ? this.currentZone.get( 'props' )[key] : this.currentZone.get( 'props' );
 
   start() {
-    const fns = this.tasks.map( ( t: Task ) => t.fn );
-    goS.apply( null, fns );
+    const fns = this.tasks.map( ( t: Task ) => {
+      if(t.fn instanceof Function) {
+        t.fn.bind(this);
+      }
+      return t.fn;
+    } );
+    this.goR.apply( null, fns );
   }
 }
 
