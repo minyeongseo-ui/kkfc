@@ -11,6 +11,8 @@
     "resolveJsonModule": true,
     "declaration": true,
     "target": "es6",
-    "declarationDir": "dist/types"
+    "declarationDir": "dist/types",
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["fxjs", "jest"]
   }
 }

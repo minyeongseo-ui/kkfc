@@ -18,7 +18,10 @@ export default {
     peerDep(),
     nodeResolve({ extensions }),
     commonjs({
-      include: 'node_modules/**'
+      include: 'node_modules/**/*',
+      namedExports: {
+        'fxjs': [ 'go' ]
+      }
     }),
     babelPluginFactory({
       extensions,

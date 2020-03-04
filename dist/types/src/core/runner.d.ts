@@ -4,6 +4,7 @@ export declare class Runner {
     private name;
     private logger;
     private tasks;
+    private goR;
     private currentZone;
     constructor(name: string, logger: any, tasks: Task[], opt?: CreateZoneOption);
     private createZone;

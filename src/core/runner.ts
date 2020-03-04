@@ -1,6 +1,6 @@
 import { Task } from './task';
 import 'zone.js/dist/zone.js';
-import { go } from 'fxjst';
+import { go } from 'fxjs';
 
 export class Runner {
   private name: string;

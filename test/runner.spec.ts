@@ -1,5 +1,4 @@
 import { ResultCode, Runner, Task } from '../src/core';
-import { go } from 'fxjst';
 
 describe( 'runner', () => {
   it( 'runner - change zone properties', () => {
