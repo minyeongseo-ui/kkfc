@@ -3,12 +3,11 @@
 **KKFC**
 ****
 
-* **Purpose**
+* **목적**
 
-    create workflow and logic fastly, simply
+    간단하고 빠르게 로직 생성을 위한 유틸리티
     
-    
-* **Example**
+* **예제**
     
     ```ts
     const t1 = new Task( 'print',  200 );
@@ -18,17 +17,17 @@
     r2.start();  
     ```
   
-* **Current progress**
+* **현재 진행상황**
 
-    * create task, runner
-    * start function implementation complete 
+    * task, runner 구현체 생성
+    * 시작 함수를 통한 로직 실행 
     
-* **Future plans**
+* **앞으로의 계획**
 
-    * Execute function auto tracing
-    * Logging according to Auto Trace
-    * Log level options
-    * utility function support (http, promise, response state(custom))
+    * 실행 함수 자동 추적
+    * 자동 추적에 따른 로깅
+    * 로깅 레벨 옵션
+    * 유틸 함수 제공 (http, promise, 사용자 정의 응답 구현체)
 
 
 ***
