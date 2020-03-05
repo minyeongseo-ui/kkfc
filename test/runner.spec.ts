@@ -12,6 +12,7 @@ describe( 'runner', () => {
     console.log( r.getProps( 'status' ) );
     expect( r.getCurrentZone().get( 'props' )['status'].code ).toEqual( ResultCode.SUCCESS );
     expect( r.getCurrentZone().get( 'props' )['status'].result ).toEqual( [ 100 ] );
+
   } );
 
   it( 'runner - go', () => {
