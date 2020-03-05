@@ -29,7 +29,7 @@
     * Logging according to Auto Trace
     * Log level options
     * utility function support (http, promise, response state(custom))
-    * consider deleting Task instances
+    * consider deleting Task class
 
 ***
 
