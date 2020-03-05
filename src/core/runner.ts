@@ -1,6 +1,6 @@
 import { Task } from './task';
 import 'zone.js/dist/zone.js';
-import { go, add, log } from 'fxjs';
+import { go } from 'fxjs';
 
 export class Runner {
   private name: string;
@@ -15,7 +15,6 @@ export class Runner {
     this.logger = logger;
     this.tasks = tasks;
     this.createZone( name, tasks, opt );
-    log(add(10, 10));
   }
 
   private createZone( name: string, tasks: Task[], opt?: CreateZoneOption ): void {

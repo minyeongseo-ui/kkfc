@@ -1,4 +1,4 @@
-import { go, log, add } from 'fxjs';
+import { go } from 'fxjs';
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -3454,7 +3454,6 @@ function () {
     this.logger = logger;
     this.tasks = tasks;
     this.createZone(name, tasks, opt);
-    log(add(10, 10));
   }
 
   _createClass(Runner, [{
