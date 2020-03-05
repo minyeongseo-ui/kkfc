@@ -3,6 +3,13 @@
 **KKFC**
 ****
 
+* **설치**
+
+   ```bash
+    npm install kkfc
+    yarn add kkfc
+   ```
+
 * **목적**
 
     간단하고 빠르게 로직 생성을 위한 유틸리티

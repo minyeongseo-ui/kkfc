@@ -3,6 +3,13 @@
 **KKFC**
 ****
 
+* **Install**
+
+   ```bash
+    npm install kkfc
+    yarn add kkfc
+   ```
+
 * **Purpose**
 
     create workflow and logic fastly, simply
