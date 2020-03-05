@@ -11,8 +11,8 @@
 * **Example**
     
     ```ts
-    const t1 = new Task( 'print',  200 );
-    const t2 = new Task( 'print', ( a: number ) => `value: ${a * 10}` );
+    const t1 = new Task( 'param',  200 );
+    const t2 = new Task( 'make log', ( a: number ) => `value: ${a * 10}` );
     const t3 = new Task( 'print', ( a: string ) => console.log(a) );
     const r2 = new Runner( 'r2', undefined, [ t1, t2, t3 ] );
     r2.start();  
